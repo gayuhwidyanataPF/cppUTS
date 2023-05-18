@@ -1,0 +1,48 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+void sequential(string arr[][2], int x){
+    int cari;
+    cout << "Masukan Pencarian Jumlah Ikan: ";
+    cin >> cari;
+    for(int i = 0; i < x; i++){
+        if(stoi(arr[i][1]) == cari){
+            cout << "Data di temukan pada baris ke " << i+1 << endl;
+        }else{
+            cout << "Data ke " << i+1 << " tidak cocok" << endl;
+        }
+    }
+}
+
+void printArray(string arr[][2], int x){
+    cout << "Data: " << endl;
+    for(int i = 0; i < x; i++){
+        for(int j = 0; j < 2; j++){
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+int main() {
+    int jumlahdata;
+    cout << "Masukan Jumlah Data: ";
+    cin >> jumlahdata;
+
+    string arr[jumlahdata][2];
+    for(int i = 0; i < jumlahdata; i++){
+        cout << "Data Ikan ke " << i+1 << endl;
+        cout << "Nama Ikan     : ";
+        cin >> arr[i][0];
+        cout << "Jumlah Ikan   : ";
+        cin >> arr[i][1];
+        cout << endl;
+    }
+
+    printArray(arr, jumlahdata);
+    sequential(arr, jumlahdata);
+
+    return 0;
+}

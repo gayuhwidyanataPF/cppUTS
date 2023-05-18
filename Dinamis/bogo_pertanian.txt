@@ -1,0 +1,54 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+bool cekBogo(string arr[][2], int x){
+    for(int i = 0; i < x - 1; i++){
+        if(stoi(arr[i][1]) > stoi(arr[i+1][1])){
+            return false;
+        }
+    }
+    return true;
+}
+
+void bogo(string arr[][2], int x){
+    while(!cekBogo(arr, x)){
+        random_shuffle(arr, arr + x);
+    }
+    cout << "Data: " << endl;
+    for(int i = 0; i < x; i++){
+        cout << i + 1 << ". ";
+        for(int j = 0; j < 2; j++){
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    int jumlahdata;
+    cout << "Masukan Jumlah Data: ";
+    cin >> jumlahdata;
+
+    string arr[jumlahdata][2];
+    for(int i = 0; i < jumlahdata; i++){
+        cout << "Data Kebun ke " << i+1 << endl;
+        cout << "Nama Tanaman     : ";
+        cin >> arr[i][0];
+        cout << "Jumlah Produksi  : ";
+        cin >> arr[i][1];
+        cout << endl;
+    }
+
+    cout << "Data: " << endl;
+    for(int i = 0; i < jumlahdata; i++){
+        for(int j = 0; j < 2; j++){
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+    bogo(arr, jumlahdata);
+
+    return 0;
+}

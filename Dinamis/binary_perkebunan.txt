@@ -1,0 +1,82 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+void selectionSort(string arr[][2], int x) {
+    for (int i = 0; i < x - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < x; j++) {
+            if (stoi(arr[j][1]) < stoi(arr[minIndex][1])) {
+                minIndex = j;
+            }
+        }
+        if (minIndex != i) {
+            for (int k = 0; k < 2; k++) {
+                string temp = arr[i][k];
+                arr[i][k] = arr[minIndex][k];
+                arr[minIndex][k] = temp;
+            }
+        }
+    }
+}
+
+int binary(string arr[][2], int x, int cari){
+    int left = 0;
+    int right = x - 1;
+    int middle = 0;
+
+    while(left <= right){
+        middle = (left + right) / 2;
+        if(stoi(arr[middle][1]) == cari){
+            return middle;
+        }else if(stoi(arr[middle][1]) > cari){
+            right = middle - 1;
+        }else{
+            left = middle + 1;
+        }
+    }
+    return -1;
+}
+
+
+void printArray(string arr[][2], int x){
+    for(int i = 0; i < x; i++){
+        for(int j = 0; j < 2; j++){
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+}
+
+int main() {
+    int jumlahdata;
+    cout << "Masukan Jumlah Data: ";
+    cin >> jumlahdata;
+
+    string arr[jumlahdata][2];
+    for(int i = 0; i < jumlahdata; i++){
+        cout << "Data Kebun ke " << i+1 << endl;
+        cout << "Nama Tanaman     : ";
+        cin >> arr[i][0];
+        cout << "Jumlah Produksi  : ";
+        cin >> arr[i][1];
+        cout << endl;
+    }
+    cout << "Data: " << endl;
+    printArray(arr, jumlahdata);
+    selectionSort(arr, jumlahdata);
+    cout << "Data urut: " << endl;
+    printArray(arr, jumlahdata);
+    int cari;
+    cout << "Data berapa yang ingin di cari: ";
+    cin >> cari;
+    int hasil = binary(arr, jumlahdata, cari);
+    if(hasil != -1){
+        cout << "Data di temukan pada baris ke " << hasil+1 << endl;
+    }else{
+        cout << "Data tidak di temukan" << endl;
+    }
+
+    return 0;
+}
