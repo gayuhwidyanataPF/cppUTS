@@ -1,0 +1,60 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+void selectionSort(string arr[][2], int x) {
+    for (int i = 0; i < x - 1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < x; j++) {
+            if (stoi(arr[j][1]) < stoi(arr[minIndex][1])) {
+                minIndex = j;
+            }
+        }
+        if (minIndex != i) {
+            for (int k = 0; k < 2; k++) {
+                string temp = arr[i][k];
+                arr[i][k] = arr[minIndex][k];
+                arr[minIndex][k] = temp;
+            }
+        }
+    }
+}
+
+int main() {
+    int rows = 10;
+    string arr[rows][2] = {
+        {"Ikan Gurame", "10"},
+        {"Ikan Salmon", "5"},
+        {"Ikan Mujair", "8"},
+        {"Ikan Lele", "3"},
+        {"Ikan Nila", "2"},
+        {"Ikan tongkol", "9"},
+        {"Ikan Kerapu", "1"},
+        {"Ikan selar", "12"},
+        {"Ikan Gabus", "13"},
+        {"Ikan Patin", "15"}
+    };
+
+    for (int i = 0; i < rows; i++) {
+        cout << "Data ikan ke " << i + 1 << endl;
+        cout << "Nama Ikan    : ";
+        cout << arr[i][0] << " " << endl;
+        cout << "Berat Ikan   : ";
+        cout << arr[i][1] << " " << "kg" << endl;
+        cout << endl;
+    }
+    cout << endl;
+
+    selectionSort(arr, rows);
+
+    cout << "Data ikan berdasarkan Berat:" << endl;
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < 2; j++) {
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+    cout << endl;
+
+    return 0;
+}
