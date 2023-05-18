@@ -1,0 +1,157 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+/*void bubble(int** arr, int x){
+    for(int i = 0; i < x - 1; i++){
+        for(int j = 0; j < x - i - 1; j++){
+            if(arr[j][1] > arr[j+1][1]){
+                swap(arr[j][0], arr[j+1][0]);
+                swap(arr[j][1], arr[j+1][1]);
+            }
+        }
+    }
+    cout << "Data: " << endl;
+    for(int i = 0; i < x; i++){
+        for(int j = 0; j < 2; j++){
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void selection(int** arr, int x){
+    int minimum;
+    for(int i = 0; i < x - 1; i++){
+        minimum = i;
+        for(int j = i + 1; j < x; j++){
+            if(arr[minimum][1] > arr[j][1]){
+                minimum = j;
+            }
+        }
+        swap(arr[i], arr[minimum]);
+    }
+    cout << "Data: " << endl;
+    for(int i = 0; i < x; i++){
+        for(int j = 0; j < 2; j++){
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+bool cekBogo(int** arr, int x){
+    for(int i = 0; i < x - 1; i++){
+        if(arr[i][1] > arr[i+1][1]){
+            return false;
+        }
+    }
+    return true;
+}
+
+void bogo(int** arr, int x){
+    while(!cekBogo(arr, x)){
+        random_shuffle(arr, arr + x);
+    }
+    cout << "Data: " << endl;
+    for(int i = 0; i < x; i++){
+        for(int j = 0; j < 2; j++){
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+void sequential(int** arr, int x){
+    cout << "Data: " << endl;
+    for(int i = 0; i < x; i++){
+        cout << i+1 << ". ";
+        for(int j = 0; j < 2; j++){
+            cout << arr[i][j] << " ";
+        }
+        cout << endl;
+    }
+    int cari;
+    cout << "Masukan Nilai Yang di cari: ";
+    cin >> cari;
+    for(int i = 0; i < x; i++){
+        if(arr[i][1] == cari){
+            cout << "Data di temukan pada baris ke " << i+1 << endl;
+        }else{
+            cout << "Data ke " << i+1 << " tidak cocok" << endl;
+        }
+    }
+}
+
+int binary(int** arr, int x, int cari){
+    int left = 0;
+    int right = x - 1;
+    int middle = 0;
+
+    while(left <= right){
+        middle = (left + right) / 2;
+        if(arr[middle][1] == cari){
+            return middle;
+        }else if(arr[middle][1] > cari){
+            right = middle - 1;
+        }else{
+            left = middle + 1;
+        }
+    }
+    return -1;
+}*/
+int luasPersegiPanjang(int panjang, int lebar){
+    return panjang * lebar;
+}
+
+void tampilHitung(){
+    int panjang, lebar;
+    cout << "Hitung Luas Persegi Panjang" << endl;
+    cout << "Masukan Panjang : ";
+    cin >> panjang;
+    cout << "Masukan lebar   : ";
+    cin >> lebar;
+
+    cout << "Total: ";
+    cout << luasPersegiPanjang(panjang, lebar);
+}
+
+int main(){
+    // no 1
+    tampilHitung();
+    int jumlahdata;
+    cout << "Masukan Jumlah Data: ";
+    cin >> jumlahdata;
+
+    int **arr = new int *[jumlahdata];
+    for(int i = 0; i < jumlahdata; i++){
+        arr[i] = new int[2];
+    }
+
+    for(int i = 0; i < jumlahdata; i++){
+        cout << "Data ke " << i+1 << endl;
+        cout << "Masukan NIM     : ";
+        cin >> arr[i][0];
+        cout << "Masukan Nilai   : ";
+        cin >> arr[i][1];
+        cout << endl;
+    }
+
+    // bubble(arr, jumlahdata);
+    // selection(arr, jumlahdata);
+    // sequential(arr, jumlahdata);
+    /*selection(arr, jumlahdata);
+    int cari;
+    cout << "Data berapa yang ingin di cari: ";
+    cin >> cari;
+    int hasil = binary(arr, jumlahdata, cari);
+    if(hasil != -1){
+        cout << "Data di temukan pada baris ke " << hasil+1 << endl;
+    }else{
+        cout << "Data tidak di temukan" << endl;
+    }
+    bogo(arr, jumlahdata);
+    */
+    return 0;
+}
